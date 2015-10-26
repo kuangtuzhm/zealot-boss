@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.zealot.boss</groupId>
+    <artifactId>zealot-boss</artifactId>
+    <version>1.0</version>
+  </parent>
+  <groupId>com.zealot.boss</groupId>
+  <artifactId>zealot-boss-base</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <name>zealot-boss-base</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  	<dependency>
+  		<groupId>com.appleframework.config</groupId>
+  		<artifactId>apple-config-diamond</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zealot</groupId>
+  		<artifactId>zealot-core</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zealot</groupId>
+  		<artifactId>zealot-exception</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zealot</groupId>
+  		<artifactId>zealot-model</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zealot</groupId>
+  		<artifactId>zealot-orm-hibernate</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zealot</groupId>
+  		<artifactId>zealot-web</artifactId>
+  	</dependency>
+  	
+  	<!-- 单点登录 -->
+  	<dependency>
+  		<groupId>org.jasig.cas.client</groupId>
+  		<artifactId>cas-client-core</artifactId>
+  	</dependency>
+  </dependencies>
+  <build>
+    <finalName>zealot-boss-base</finalName>
+  </build>
+</project>
