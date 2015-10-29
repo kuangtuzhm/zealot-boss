@@ -1,4 +1,4 @@
-package com.zealot.boss.base.entity;
+package com.zealot.boss.base.entity.authorize;
 
 import java.io.Serializable;
 

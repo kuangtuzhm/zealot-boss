@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.zealot.boss.base.entity.User" table="user" dynamic-update="true">
+    <class name="com.zealot.boss.base.entity.authorize.User" table="user" dynamic-update="true">
         <id name="uid" type="java.lang.Integer">
             <column name="uid" />
             <generator class="native" />

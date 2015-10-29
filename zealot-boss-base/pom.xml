@@ -7,9 +7,7 @@
     <artifactId>zealot-boss</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>com.zealot.boss</groupId>
   <artifactId>zealot-boss-base</artifactId>
-  <version>1.0</version>
   <packaging>war</packaging>
   <name>zealot-boss-base</name>
   <url>http://maven.apache.org</url>
@@ -45,11 +43,37 @@
   		<artifactId>zealot-web</artifactId>
   	</dependency>
   	
+  	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+	</dependency>
+  	
+  	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+	</dependency>
+  	
   	<!-- 单点登录 -->
   	<dependency>
   		<groupId>org.jasig.cas.client</groupId>
   		<artifactId>cas-client-core</artifactId>
   	</dependency>
+  	
   </dependencies>
   <build>
     <finalName>zealot-boss-base</finalName>

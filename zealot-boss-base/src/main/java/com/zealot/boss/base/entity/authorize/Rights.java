@@ -1,6 +1,8 @@
-package com.zealot.boss.base.entity;
+package com.zealot.boss.base.entity.authorize;
 
 import java.io.Serializable;
+
+import com.zealot.model.entity.BaseEntity;
 
 /**
  * 权限功能
@@ -9,7 +11,7 @@ import java.io.Serializable;
  * @history	
  *
  */
-public class Rights implements Serializable 
+public class Rights extends BaseEntity implements Serializable 
 {
 	private static final long serialVersionUID = 1629018043539614522L;
 	
@@ -85,6 +87,7 @@ public class Rights implements Serializable
 	public void setIorder(Integer iorder) {
 		this.iorder = iorder;
 	}
+
 	@Override
 	public String toString()
 	{

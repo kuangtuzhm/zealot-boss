@@ -1,4 +1,4 @@
-package com.zealot.boss.base.entity;
+package com.zealot.boss.base.entity.authorize;
 
 import java.util.List;
 
@@ -35,6 +35,16 @@ public class User implements java.io.Serializable {
 	private String oldPwd;
 	
 	/**
+	 * email
+	 */
+	private String email;
+	
+	/**
+	 * 电话号码
+	 */
+	private String phoneNum;
+	
+	/**
 	 * 创建时间
 	 */
 	private String createTime;
@@ -48,6 +58,11 @@ public class User implements java.io.Serializable {
 	 * 状态 1 有效状态 0 无效状态
 	 */
 	private Integer state;
+	
+	/**
+	 * 是否超级管理员
+	 */
+	private Integer isAdmin;
 
 	/** 用户所有角色(组)信息 **/
 	private List<Roles> roles;
@@ -141,5 +156,29 @@ public class User implements java.io.Serializable {
     {
         this.updateTime = updateTime;
     }
+
+	public Integer getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Integer isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

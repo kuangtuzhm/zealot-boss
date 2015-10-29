@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.zealot.boss.base.entity.UserRole" table="user_role">
+    <class name="com.zealot.boss.base.entity.authorize.RoleRight" table="role_right">
        <composite-id>
-			<key-property name="uid" column="uid" type="java.lang.Integer" />
+			<key-property name="rightCode" column="right_code" type="java.lang.String" />
 			<key-property name="roleId" column="role_id" type="java.lang.Integer" />
        </composite-id>
     </class>
