@@ -31,7 +31,13 @@ public class RightsServiceImpl implements RightsService
     @Resource(name="roleRightDao")
     private RoleRightDao roleRightDao;
     
-    public Rights getRightByCode(String rightCode) throws AppException
+    @Override
+	public List<Rights> queryRootMenu(Rights right) throws AppException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Rights getRightByCode(String rightCode) throws AppException
     {
     	return rightDao.getRightByCode(rightCode);
     }

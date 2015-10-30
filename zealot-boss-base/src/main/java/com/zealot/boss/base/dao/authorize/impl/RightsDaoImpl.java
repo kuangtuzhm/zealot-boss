@@ -53,8 +53,7 @@ public class RightsDaoImpl implements RightsDao
 
 	public List<Rights> queryRightList(Rights right) throws AppException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return baseDAO.queryByExample(right);
     }
 	
 	public List<Rights> queryRightByRole(Integer roleId) throws AppException

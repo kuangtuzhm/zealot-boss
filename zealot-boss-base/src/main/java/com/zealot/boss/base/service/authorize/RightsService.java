@@ -10,6 +10,14 @@ import com.zealot.exception.ResultException;
 
 public interface RightsService
 {
+	/**
+	 * 查找boss子系统菜单，也就是type=0
+	 * @param right
+	 * @return
+	 * @throws AppException
+	 */
+	public List<Rights> queryRootMenu(Rights right) throws AppException;
+	
 	public Rights getRightByCode(String rightCode) throws AppException;
 	
 	public Integer saveRight(Rights right) throws AppException,ResultException;

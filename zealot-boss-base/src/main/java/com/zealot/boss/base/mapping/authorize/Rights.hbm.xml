@@ -4,20 +4,21 @@
 
 <hibernate-mapping>
     <class name="com.zealot.boss.base.entity.authorize.Rights" table="rights">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="native" />
+        <id name="rightCode" type="java.lang.String">
+            <column name="right_code" />
+            <generator class="assigned" />
         </id>
-        <property name="rightCode" column="right_code" type="java.lang.String"/>
         <property name="parentCode" column="parentCode" type="java.lang.String"/>
         <property name="rightDesc" column="right_desc" type="java.lang.String"/>
         <property name="uri" column="uri" type="java.lang.String"/>
         <property name="state" column="state" type="java.lang.Integer"/>
         <property name="iorder" column="iorder" type="java.lang.Integer"/>
         <property name="type" column="type" type="java.lang.Integer"/>
+        <property name="openStyle" column="open_style" type="java.lang.Integer"/>
+        <property name="icon" column="icon" type="java.lang.String"/>
         <property name="createdBy" column="createdBy" type="java.lang.Integer"/>
         <property name="updatedBy" column="updatedBy" type="java.lang.Integer"/>
-        <property name="createTime" column="createTime" type="java.lang.String"/>
-        <property name="updateTime" column="updateTime" type="java.lang.String"/>
+        <property name="createTime" column="createTime" type="java.util.Date"/>
+        <property name="updateTime" column="updateTime" type="java.util.Date"/>
     </class>
 </hibernate-mapping>

@@ -7,7 +7,7 @@
   <name>zealot-boss</name>
   
   <properties>
- 	<config.version>0.1.2.RELEASE.zhm</config.version>
+ 	<config.version>1.0</config.version>
  	<zealot.version>1.0</zealot.version>
  	<cas.client.version>3.4.1</cas.client.version>
  	<jackson.version>2.6.0</jackson.version>
