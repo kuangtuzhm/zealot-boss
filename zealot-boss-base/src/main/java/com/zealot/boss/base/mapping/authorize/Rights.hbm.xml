@@ -8,7 +8,8 @@
             <column name="right_code" />
             <generator class="assigned" />
         </id>
-        <property name="parentCode" column="parentCode" type="java.lang.String"/>
+        <property name="parentCode" column="parent_code" type="java.lang.String"/>
+        <property name="sysCode" column="sys_code" type="java.lang.String"/>
         <property name="rightDesc" column="right_desc" type="java.lang.String"/>
         <property name="uri" column="uri" type="java.lang.String"/>
         <property name="state" column="state" type="java.lang.Integer"/>
@@ -16,6 +17,9 @@
         <property name="type" column="type" type="java.lang.Integer"/>
         <property name="openStyle" column="open_style" type="java.lang.Integer"/>
         <property name="icon" column="icon" type="java.lang.String"/>
+        <property name="path" column="path" type="java.lang.String"/>
+        <property name="baseUrl" column="base_url" type="java.lang.String"/>
+        <property name="isHidden" column="is_hidden" type="java.lang.Integer"/>
         <property name="createdBy" column="createdBy" type="java.lang.Integer"/>
         <property name="updatedBy" column="updatedBy" type="java.lang.Integer"/>
         <property name="createTime" column="createTime" type="java.util.Date"/>

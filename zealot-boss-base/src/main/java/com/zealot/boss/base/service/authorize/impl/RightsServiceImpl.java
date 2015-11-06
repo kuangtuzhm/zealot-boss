@@ -146,7 +146,38 @@ public class RightsServiceImpl implements RightsService
     	return resultList;
     }
     
-    private void build(SimpleRights node,List<SimpleRights> allRights){  
+    @Override
+	public List<Rights> findChildList(Rights right, List<Rights> list) {
+		List<Rights> childList = new ArrayList<Rights>();
+		if(list!=null)
+		{
+			for(Rights r : list)
+			{
+				if(right.getRightCode().equals(r.getParentCode()))
+				{
+					childList.add(r);
+				}
+			}
+		}
+		return childList;
+	}
+    
+    public List<Rights> findByPath(String path) throws AppException
+    {
+    	StringBuilder sb = new StringBuilder("");
+    	String [] pathArr = path.split(",");
+    	for(String pathId : pathArr)
+    	{
+    		if(sb.length()!=0)
+    		{
+    			sb.append(",");
+    		}
+    		sb.append("'").append(pathId).append("'");
+    	}
+    	return rightDao.findByPath(sb.toString());
+    }
+
+	private void build(SimpleRights node,List<SimpleRights> allRights){  
         List<SimpleRights> children = getChildren(node,allRights);
         if (!children.isEmpty()) {
         	node.setChildList(children);

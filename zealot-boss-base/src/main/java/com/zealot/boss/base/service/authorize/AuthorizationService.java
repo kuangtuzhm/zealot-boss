@@ -31,7 +31,14 @@ public interface AuthorizationService
 	public boolean hasUriRight(Integer uid, String uri) throws AppException;
 	
 	/**
-	 * 清空权限信息
+	 * 用户角色授权变更后改变缓存
+	 * @param uid
 	 */
-	public void reInit();
+	public void clearUserRoles(Integer uid);
+	
+	/**
+	 * 角色权限变更后改变缓存
+	 * @param rightCode
+	 */
+	public void clearRightRoles(String rightCode);
 }

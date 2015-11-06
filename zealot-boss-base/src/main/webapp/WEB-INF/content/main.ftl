@@ -52,10 +52,12 @@ function gotoPassword() {
                 <ul class="control_panel_list clearfix">
                 	<#assign menuCount = 0 />
                 	<#list ROOT_MENU_LIST as menu>
-
-							<li><a class="ico" <#if menu.openStyle=0> href="menu_main?id=${menu.rightCode}"<#else> href="${(menu.uri)!''}" target="_blank"</#if>><img src="${(menu.icon)!}"></a><h3><a href="#">${menu.rightDesc}</a></h3></li>
+					<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+						<#if hasRights>
+							<li><a class="ico" <#if menu.openStyle=0> href="menu_main?id=${menu.rightCode}"<#else> href="${(menu.baseUrl)!''}" target="_blank"</#if>><img src="${(menu.icon)!}"></a><h3><a href="#">${menu.rightDesc}</a></h3></li>
 							<#assign menuCount=menuCount+1 />
-
+						</#if>
+					</@authorize>
                     <#if (menuCount > 1 && menuCount % 8 == 0)>
                     	</ul>
                     	<ul class="control_panel_list clearfix">

@@ -41,8 +41,12 @@ public class IndexController {
 	
 	@RequestMapping(value = "/panel", method = RequestMethod.GET)
 	public String panel(Model model, HttpServletResponse response) throws Exception {
-//		List<RtsMenu> list = menuService.findRootMenuList();
-//		model.addAttribute("ROOT_MENU_LIST", list);
+		//查询子系统
+		Rights right = new Rights();
+		right.setState(1);
+		right.setType(0);
+		List<Rights> list = rightsService.queryRightList(right);
+		model.addAttribute("ROOT_MENU_LIST", list);
 		return "panel";
 	}
 	

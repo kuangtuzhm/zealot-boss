@@ -16,7 +16,7 @@ import com.zealot.orm.dao.BaseDAO;
 public class UserRoleDaoImpl implements UserRoleDao
 {
 
-    @Resource  
+	@Resource(name="baseDAO") 
     private BaseDAO<UserRole> baseDAO;
 
 	public void saveUserRole(UserRole userRole) throws AppException {

@@ -1,14 +1,13 @@
 package com.zealot.boss.base.filter;
 
 import org.jasig.cas.client.authentication.AttributePrincipal;
-import org.jasig.cas.client.model.User;
 import org.jasig.cas.client.util.AbstractConfigurationFilter;
-import org.jasig.cas.client.util.AssertionHolder;
 import org.jasig.cas.client.util.RequestURIFilter;
 import org.jasig.cas.client.util.ServletUtil;
 import org.jasig.cas.client.validation.Assertion;
 
 import com.appleframework.config.core.PropertyConfigurer;
+import com.zealot.boss.base.entity.authorize.User;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import java.util.Map;
 public class BossFilter extends AbstractConfigurationFilter {
 		
 	public static String SESSION_USER_KEY = "CAS_USER";
-	public static String SESSION_RTS_KEY  = "CAS_USER_RIGHTS";
 	public static String SESSION_CAS_KEY  = "_const_cas_assertion_";
 	
 	/**
@@ -81,9 +79,6 @@ public class BossFilter extends AbstractConfigurationFilter {
 				user.setIsAdmin(Integer.parseInt(attributes.get("isAdmin").toString()));
 				if(null != attributes.get("uname")) {
 					user.setUname(attributes.get("uname").toString());
-				}
-				if(null != attributes.get("roles")) {
-					user.setRoles(attributes.get("roles").toString());
 				}
 				if(null != attributes.get("phoneNum")) {
 					user.setPhoneNum(attributes.get("phoneNum").toString());

@@ -130,7 +130,6 @@ dTree.prototype.cc = function(nId, pId) {
 <div class="con_right_main">
 
 	<form id="inputForm" method="post" action="save">
-	<input type="hidden" name="isadmin" value="0" />
 	
     <!-- start of con_search -->
 	<div class="con_search">
@@ -141,43 +140,23 @@ dTree.prototype.cc = function(nId, pId) {
         <table class="add_list_table input tabContent">
             <tr>
                 <th class="padT20">用户名：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="username" value="" maxlength="19"></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="loginName" value="" maxlength="19"></td>
             </tr>
             <tr>
                 <th class="padT20">真实姓名：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="realname" value="" maxlength="29"></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="uname" value="" maxlength="29"></td>
             </tr>
             <tr>
                 <th class="padT20">密码：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="password" value="" maxlength="29"></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="pwd" value="" maxlength="29"></td>
             </tr>
             <tr>
                 <th class="padT20">手机：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="mobile" value="" maxlength="64"></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="phoneNum" value="" maxlength="64"></td>
             </tr>
             <tr>
                 <th class="padT20">邮箱：</th>
                 <td class="padT20"><input class="c_input_text text" type="text" name="email" value="" maxlength="250"></td>
-            </tr>
-     		<tr>
-                <th class="padT20">所属部门：</th>
-                <td class="padT20">
-                	<input class="c_input_text text" type="text" id="depart" name="depart" value="" maxlength="250" readonly onclick="showMenu(); return false;" />
-                	<input type="hidden" id="departId" name="department.id" value="" />
-                	<a id="menuBtn" href="javascript:void(0);" onclick="showMenu(); return false;">选择</a>
-                </td>
-            </tr>
-            <tr>
-                <th>角色选项：</th>
-                <td>
-                	<div class="ullicss_">
-                	<ul>
-               		<#list ROLE_LIST as role>
-						<li><input id="userRole${role.id}" name="roleIds" value='${role.id}' type='checkbox' >${role.roleName}</li>
-					</#list>
-					</ul>
-					</div>
-                </td>
             </tr>
             <tr>
                 <th class="padT20">状态：</th>

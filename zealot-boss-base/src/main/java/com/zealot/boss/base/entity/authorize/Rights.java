@@ -19,6 +19,12 @@ public class Rights extends BaseEntity implements Serializable
 	private String rightCode;
 	
 	private String parentCode;
+	
+	/**
+	 * 所属系统的编号
+	 */
+	private String sysCode;
+	
 	/**排列顺序**/
 	private Integer iorder;
 	/**1:菜单 2:button**/
@@ -45,6 +51,21 @@ public class Rights extends BaseEntity implements Serializable
 	
 	/**状态**/
 	private Integer state;
+	
+	/**
+	 * 路径
+	 */
+	private String path;
+	
+	/**
+	 * 根目录访问URL
+	 */
+	private String baseUrl;
+	
+	/**
+	 * 右菜单是否隐藏 =1是 =0否
+	 */
+	private Integer isHidden;
 	
 	public String getRightCode() {
 		return rightCode;
@@ -86,7 +107,12 @@ public class Rights extends BaseEntity implements Serializable
 		this.parentCode = parentCode;
 	}
 	
-	
+	public String getSysCode() {
+		return sysCode;
+	}
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
 	public Integer getIorder() {
 		return iorder;
 	}
@@ -107,6 +133,27 @@ public class Rights extends BaseEntity implements Serializable
 	public void setOpenStyle(Integer openStyle) {
 		this.openStyle = openStyle;
 	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
+	public Integer getIsHidden() {
+		return isHidden;
+	}
+	public void setIsHidden(Integer isHidden) {
+		this.isHidden = isHidden;
+	}
+	
+	public String getBaseUrl() {
+		return baseUrl;
+	}
+	public void setBaseUrl(String baseUrl) {
+		this.baseUrl = baseUrl;
+	}
+	
 	@Override
 	public String toString()
 	{

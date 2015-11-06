@@ -18,7 +18,7 @@ import com.zealot.util.ValidateUtil;
 public class RightsDaoImpl implements RightsDao
 {
 
-    @Resource  
+	@Resource(name="baseDAO")
     private BaseDAO<Rights> baseDAO;
     
     @Resource(name="baseDAO")  
@@ -93,4 +93,8 @@ public class RightsDaoImpl implements RightsDao
         return rights;
 	}
 
+	public List<Rights> findByPath(String path) throws AppException{
+		String hql = "from Rights where rightCode in (" + path + ") order by type asc ";
+		return  baseDAO.find(hql);
+	}
 }

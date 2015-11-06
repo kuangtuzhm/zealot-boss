@@ -19,9 +19,9 @@ function gotoMain(){
 	<!-- start of 当前位置 -->
     <div class="path">您的当前位置：<a href="javascript:void(0);" onclick="gotoMain();">首页</a> > 
     	<#list PATH_MENU_LIST as menu>
-    		<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-				<#if hasRights == 1>
-					<a href="javascript:void(0);">${menu.urlName}</a> >
+    		<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+				<#if hasRights>
+					<a href="javascript:void(0);">${menu.rightDesc}</a> >
 				</#if>
 			</@authorize>
 		</#list>
@@ -34,12 +34,12 @@ function gotoMain(){
     	<div class="tab_tit_show clearfix">
     	
     		<#list RIGHT_MENU_LIST as menu>
-    			<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-					<#if hasRights == 1>
+    			<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+					<#if hasRights>
 						<#if menu.openStyle == 0>
-							<a href="javascript:void(0);" isHidden="${(menu.isHidden)!}" class="showmenu<#if menu_index == 0> cur</#if>" url="${(menu.baseUrl)!''}${(menu.url)!}"><em>${menu.urlName}</em></a>
+							<a href="javascript:void(0);" isHidden="${(menu.isHidden)!}" class="showmenu<#if menu_index == 0> cur</#if>" url="${(menu.baseUrl)!''}${(menu.uri)!}"><em>${menu.rightDesc}</em></a>
 						<#else>
-							<a href="javascript:void(0);" isHidden="${(menu.isHidden)!}" class="showmenu<#if menu_index == 0> cur</#if>" url="${(menu.url)!}"><em>${menu.urlName}</em></a>
+							<a href="javascript:void(0);" isHidden="${(menu.isHidden)!}" class="showmenu<#if menu_index == 0> cur</#if>" url="${(menu.uri)!}"><em>${menu.rightDesc}</em></a>
 						</#if>
 					</#if>
 				</@authorize>
@@ -58,7 +58,6 @@ $(document).ready(function() {
     	$(this).bind("click",function(){
      		var url = $(this).attr("url");
          	var isHidden = $(this).attr("isHidden");
-         	 
         	//self.top.frames[3].location.href=url;
         	self.parent.frames[3].location.href = url;
         	$("a.showmenu").removeClass("cur");

@@ -35,4 +35,14 @@ public interface RightsService
     public void setRoleRights(List<SimpleRights> allRights,List<Rights> roleRights );
     
     public List<SimpleRights> groupRights(List<SimpleRights> allRights);
+    
+    public List<Rights> findChildList(Rights right,List<Rights> list);
+    
+    /**
+     * 根据path获得列表
+     * @param path
+     * @return
+     * @throws AppException
+     */
+    public List<Rights> findByPath(String path) throws AppException;
 }

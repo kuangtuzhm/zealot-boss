@@ -19,6 +19,7 @@
 
 	<context:component-scan base-package="com.zealot.boss" />
 	
+	<mvc:annotation-driven validator="validator" />
 
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
 
@@ -79,6 +80,7 @@
 					</bean>
 				</entry>
 				<entry key="xml_escape" value-ref="fmXmlEscape" />
+				<entry key="authorize" value-ref="authorizeDirective"/>
 			</map>
 		</property>
 	</bean>
@@ -154,4 +156,5 @@
 		<property name="maxUploadSize" value="1000000" />
 	</bean>
 
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>
 </beans>

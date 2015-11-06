@@ -20,14 +20,17 @@
     <div class="head_right">
     	<div class="head_top_link clearfix">
             <ul class="ul_head_top_link right">
-                <li><span class="name">${CAS_USER.realname}</span>|</li>
+                <li><span class="name">${CAS_USER.uname}</span>|</li>
                 <li><a href="javascript:void(0);" onclick="gotoPassword();">账户设置</a>|</li>
                 <li><a class="down_menu" href="javascript:void(0);" onclick="gotoPanel();">控制面板</a>|
                     <ul class="ul_down_menu" style="display:none;">
                     <#list ROOT_MENU_LIST as menu>
-                	<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-						<#if hasRights == 1><li><a href="${menu.id}">${menu.urlName}</a></li></#if>
-					</@authorize></#list>
+                	<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+						<#if hasRights>
+							<li><a href="${menu.rightCode}">${menu.rightDesc}</a></li>
+						</#if>
+					</@authorize>
+					</#list>
                     </ul>
                 </li>
                 <li><a id="logout" href="logout">退出</a></li>
@@ -36,9 +39,9 @@
     	<div class="main_nav">
         	<ul class="nav clearfix">
         		<#list SECOND_MENU_LIST as menu>
-        			<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-						<#if hasRights == 1>
-							<li><a class="showmenu<#if menu_index == 0> cur</#if>" href="javascript:void(0);" id="${(menu.id)?c}">${menu.urlName}</a></li>
+        			<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+						<#if hasRights>
+							<li><a class="showmenu<#if menu_index == 0> cur</#if>" href="javascript:void(0);" id="${menu.rightCode}">${menu.rightDesc}</a></li>
 						</#if>
 					</@authorize>
             	</#list>
@@ -56,7 +59,6 @@ $(document).ready(function() {
              var url = "menu_left?id=" + id;
              //self.top.frames[1].location.href=url;
              self.parent.frames[1].location.href = url;
-             
              $("a.showmenu").removeClass("cur");
              $(this).addClass("cur");
          });

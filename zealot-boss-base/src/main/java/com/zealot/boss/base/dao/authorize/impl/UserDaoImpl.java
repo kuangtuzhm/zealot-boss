@@ -21,7 +21,7 @@ import com.zealot.util.ValidateUtil;
 public class UserDaoImpl implements UserDao
 {
 
-    @Resource  
+	@Resource(name="baseDAO")
     private BaseDAO<User> baseDAO;  
   
     public Integer saveUser(User user) throws AppException{  

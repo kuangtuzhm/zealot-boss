@@ -51,10 +51,10 @@ $(document).ready(function(){
             <ul class="control_panel_list clearfix">
 					<#assign menuCount = 0 />
                 	<#list ROOT_MENU_LIST as menu>
-                   	<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-						<#if hasRights == 1>
-							<li><a class="ico gotoMenu" <#if menu.openStyle=0> url="menu_main?id=${(menu.id)?c}"<#else> url="${(menu.baseUrl)!''}"</#if> openStyle="${menu.openStyle}" href="javascript:void(0);"><img src="${(menu.iconUrl)!}"></a><h3><a href="#">${menu.urlName}</a></h3></li>
-							 <#assign menuCount=menuCount+1 />
+                   	<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+						<#if hasRights>
+							<li><a class="ico gotoMenu" <#if menu.openStyle=0> url="menu_main?id=${(menu.rightCode)}"<#else> url="${(menu.baseUrl)!''}"</#if> openStyle="${menu.openStyle}" href="javascript:void(0);"><img src="${(menu.icon)!}"></a><h3><a href="#">${menu.rightDesc}</a></h3></li>
+							<#assign menuCount=menuCount+1 />
 						</#if>
 					</@authorize>
                     <#if (menuCount > 0 && menuCount % 8 == 0)>

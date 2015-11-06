@@ -21,7 +21,7 @@ import com.zealot.util.ValidateUtil;
 public class RolesDaoImpl implements RolesDao
 {
 
-    @Resource  
+	@Resource(name="baseDAO")
     private BaseDAO<Roles> baseDAO;
     
     public Integer saveRole(Roles role) throws AppException

@@ -15,7 +15,7 @@ import com.zealot.orm.dao.BaseDAO;
 @Service("roleRightDao")
 public class RoleRightDaoImpl implements RoleRightDao {
 	
-	@Resource  
+	@Resource(name="baseDAO") 
     private BaseDAO<RoleRight> baseDAO;
 
 	public void saveRoleRight(RoleRight roleRight) throws AppException {

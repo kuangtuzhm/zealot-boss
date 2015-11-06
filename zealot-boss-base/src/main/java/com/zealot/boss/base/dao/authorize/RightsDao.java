@@ -23,4 +23,6 @@ public interface RightsDao
     public List<Rights> queryChilderenRight(String parentCode) throws AppException;
     
     public List<Rights> queryRightByRole(Integer roleId) throws AppException;
+    
+    public List<Rights> findByPath(String path) throws AppException;
 }

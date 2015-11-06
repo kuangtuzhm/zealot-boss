@@ -130,6 +130,9 @@ function callback() {
                     <span class="group"><label>用户名或姓名：</label>
                     	<input type="text" name="keyword" class="c_input_text" realValue="输入角色名称" value="${(search.keyword)!''}" />
                     </span>
+                    <span class="group"><label>用户名或姓名：</label>
+                    	<input type="text" name="keyword" class="c_input_text" realValue="输入角色名称" value="${(search.keyword)!''}" />
+                    </span>
                     <span class="group"><a id="searchButton" href="javascript:;" class="btn_search">搜索</a></span>
                 </p>
             </div>

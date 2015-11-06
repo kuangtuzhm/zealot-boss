@@ -2,14 +2,15 @@ package com.zealot.boss.base.entity.authorize;
 
 import java.util.List;
 
+import com.zealot.model.entity.BaseEntity;
+
 /**
  * 客户表
  * 
- * @author tangl
- * @date 2012-7-13
+ * @date 2015-7-13
  * @since 1.0
  */
-public class User implements java.io.Serializable {
+public class User extends BaseEntity implements java.io.Serializable {
 	private static final long serialVersionUID = -2636778397956119662L;
 
 	/**
@@ -43,16 +44,6 @@ public class User implements java.io.Serializable {
 	 * 电话号码
 	 */
 	private String phoneNum;
-	
-	/**
-	 * 创建时间
-	 */
-	private String createTime;
-	
-	/**
-     * 创建时间
-     */
-    private String updateTime;
 
 	/**
 	 * 状态 1 有效状态 0 无效状态
@@ -107,16 +98,6 @@ public class User implements java.io.Serializable {
         this.pwd = pwd;
     }
 
-    public String getCreateTime()
-    {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime)
-    {
-        this.createTime = createTime;
-    }
-
     public Integer getState()
     {
         return state;
@@ -145,16 +126,6 @@ public class User implements java.io.Serializable {
     public void setOldPwd(String oldPwd)
     {
         this.oldPwd = oldPwd;
-    }
-
-    public String getUpdateTime()
-    {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime)
-    {
-        this.updateTime = updateTime;
     }
 
 	public Integer getIsAdmin() {

@@ -11,9 +11,10 @@
 	// 表单验证
 	function updatePwd() {
 		
-			var oldPassword = $("#oldPassword");
-			var newPassword = $("#newPassword");
+			var oldPassword = $("#oldPwd");
+			var newPassword = $("#pwd");
 			var confirmPassword = $("#confirmPassword");
+			var uid = $("#uid").val();
 			var errMsg = $("#errMsg");
 			
 			 if(oldPassword.val().length == 0){
@@ -55,7 +56,7 @@
 			$.ajax({
 				type: "post",
 				url: "/password/update",
-				data: "oldPassword=" + oldPassword.val() + "&newPassword=" + newPassword.val(),
+				data: "oldPwd=" + oldPassword.val() + "&pwd=" + newPassword.val() + "&uid=" + uid,
 				dataType: "json",
 				beforeSend: function(XMLHttpRequest){
 					//ShowLoading();
@@ -63,7 +64,7 @@
 				success: function(data, textStatus){
 					if(data.type == 'success') {
 						pop_succeed("操作成功", "修改密码成功，请重新登录。", function() {
-							location.href = "/logout";
+							parent.location.href = "/logout";
 						}, false);
 					}
 					else {
@@ -86,12 +87,13 @@
 <body>
 
 <form id="inputForm" method="post">
+	<input id="uid" name="uid" type="hidden" value="${(uid)!}">
 	<ul class="pop_list" style="width:400px;">
 		<li class="clearfix"><span class="tit">旧密码：</span>
-			<input id="oldPassword" name="oldPassword" class="c_input_text" type="password" style="width:200px;">
+			<input id="oldPwd" name="oldPwd" class="c_input_text" type="password" style="width:200px;">
 		</li>
 		<li class="clearfix"><span class="tit">新密码：</span>
-			<input id="newPassword" name="newPassword" class="c_input_text" type="password" style="width:200px;">
+			<input id="pwd" name="pwd" class="c_input_text" type="password" style="width:200px;">
 		</li>
 		<li class="clearfix"><span class="tit">确认密码：</span>
 			<input id="confirmPassword" class="c_input_text" type="password" style="width:200px;">

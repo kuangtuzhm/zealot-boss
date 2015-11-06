@@ -13,14 +13,14 @@
 <div class="con_left">
 	<ul class="sub_nav">
 		<#list LEFT_MENU_LIST as menu>
-		<@authorize menuId=menu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-			<#if hasRights == 1>
-				<li><a href="javascript:void(0);">${menu.urlName}</a>
+		<@authorize menuId=menu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+			<#if hasRights>
+				<li><a href="javascript:void(0);">${menu.rightDesc}</a>
 		     		<ul class="ul_sub_nav_down_menu clearfix">
-		     		<#list CHILD_MAP_MENU_LIST[(menu.id)?c + ''] as childMenu>
-		     			<@authorize menuId=childMenu.id rights=CAS_USER_RIGHTS isAdmin=CAS_USER.isadmin>
-		     				<#if hasRights == 1>
-		     					<li><a class="showmenu" href="javascript:void(0);" id="${childMenu.id}"><em>${childMenu.urlName}</em></a></li>
+		     		<#list CHILD_MAP_MENU_LIST[(menu.rightCode)] as childMenu>
+		     			<@authorize menuId=childMenu.rightCode uid=CAS_USER.uid isAdmin=CAS_USER.isAdmin>
+		     				<#if hasRights>
+		     					<li><a class="showmenu" href="javascript:void(0);" id="${childMenu.rightCode}"><em>${childMenu.rightDesc}</em></a></li>
 		     				</#if>
 		     			</@authorize>
 					</#list>
