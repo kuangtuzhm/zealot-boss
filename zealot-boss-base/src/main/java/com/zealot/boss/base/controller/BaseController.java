@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -14,13 +16,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.zealot.boss.base.entity.authorize.User;
 import com.zealot.boss.base.filter.BossFilter;
+import com.zealot.model.entity.Operator;
 import com.zealot.web.bean.Message;
 import com.zealot.web.bean.Message.Type;
 
 
 public class BaseController {
 	
-protected static final String ERROR_VIEW = "/commons/error";
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	protected static final String ERROR_VIEW = "/commons/error";
 	
 	protected static final String SUCCESS_VIEW = "/commons/success";
 	
@@ -92,8 +97,9 @@ protected static final String ERROR_VIEW = "/commons/error";
 		return content.trim();
 	}
 	
-	protected User getOperator(HttpServletRequest request){
-		return (User)request.getSession().getAttribute(BossFilter.SESSION_USER_KEY);
+	@SuppressWarnings("unchecked")
+	protected Operator<Integer> getOperator(HttpServletRequest request){
+		return (Operator<Integer>)request.getSession().getAttribute(BossFilter.SESSION_OPERATOR);
 	}
 
 }

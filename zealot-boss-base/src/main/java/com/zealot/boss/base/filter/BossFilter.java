@@ -8,6 +8,7 @@ import org.jasig.cas.client.validation.Assertion;
 
 import com.appleframework.config.core.PropertyConfigurer;
 import com.zealot.boss.base.entity.authorize.User;
+import com.zealot.model.entity.Operator;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class BossFilter extends AbstractConfigurationFilter {
 		
 	public static String SESSION_USER_KEY = "CAS_USER";
+	public static String SESSION_OPERATOR = "CAS_OPERATOR";
 	public static String SESSION_CAS_KEY  = "_const_cas_assertion_";
 	
 	/**
@@ -86,7 +88,11 @@ public class BossFilter extends AbstractConfigurationFilter {
 				if(null != attributes.get("email")) {
 					user.setEmail(attributes.get("email").toString());
 				}
-
+				Operator<Integer> operator = new Operator<Integer>();
+				operator.setId(user.getUid());
+				operator.setAccount(user.getLoginName());
+				operator.setName(user.getUname());
+				httpRequest.getSession().setAttribute(SESSION_OPERATOR, operator);	
 				httpRequest.getSession().setAttribute(SESSION_USER_KEY, user);	
 			}
 		}

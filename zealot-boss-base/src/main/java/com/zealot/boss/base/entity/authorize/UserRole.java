@@ -12,21 +12,18 @@ import java.io.Serializable;
 public class UserRole implements Serializable 
 {
 	private static final long serialVersionUID = -3040321779770164293L;
-	/**用户编号**/
+
+	/**用户**/
 	private Integer uid;
-	/**角色号**/
+	/**角色**/
 	private Integer roleId;
-	
-	
-	public Integer getUid()
-    {
-        return uid;
-    }
-    public void setUid(Integer uid)
-    {
-        this.uid = uid;
-    }
-    public Integer getRoleId() {
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+	public Integer getRoleId() {
 		return roleId;
 	}
 	public void setRoleId(Integer roleId) {

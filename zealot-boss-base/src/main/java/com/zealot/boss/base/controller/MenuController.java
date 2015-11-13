@@ -58,6 +58,7 @@ public class MenuController {
 			List<Rights> leftMenuList = null;
 			Rights rightExample = new Rights();
 			rightExample.setParentCode(id);
+			rightExample.setState(1);
 			leftMenuList = rightsService.queryRightList(rightExample);
 			
 			if(leftMenuList!=null && leftMenuList.size()>0)
@@ -68,6 +69,7 @@ public class MenuController {
 				//本系统下所有菜单项
 				Rights example = new Rights();
 				example.setSysCode(sysCode);
+				example.setState(1);
 				List <Rights> allMenuList = rightsService.queryRightList(example);
 		        //左侧树形菜单一级菜單
 				for (Rights leftMenu : leftMenuList) {
@@ -97,6 +99,7 @@ public class MenuController {
 			List<Rights> rightMenuList = null;
 			Rights rightExample = new Rights();
 			rightExample.setParentCode(id);
+			rightExample.setState(1);
 			rightMenuList = rightsService.queryRightList(rightExample);
 			model.addAttribute("RIGHT_MENU_LIST", rightMenuList);
 			

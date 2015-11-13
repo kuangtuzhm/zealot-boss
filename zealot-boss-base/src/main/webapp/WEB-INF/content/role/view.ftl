@@ -5,23 +5,6 @@
 <title>角色详情</title>
 <#include "../commons/page_css.ftl" />
 <#include "../commons/page_js.ftl" />
-<link rel="StyleSheet" href="/css/dtree/dtree.css" type="text/css" />
-<script type="text/javascript" src="/js/dtree/dtree.js"></script>
-
-<script type="text/javascript">
-$().ready(function() {
-		
-});
-
-
-dTree.prototype.cc = function(nId, pId) {
-	if(pId == -1) {
-		var obj = $("#cd" + nId).prop("checked");
-		$("[name='ckd']").attr("checked", obj);
-	}
-};
-</script>
-
 </head>
 
 <body>
@@ -40,37 +23,12 @@ dTree.prototype.cc = function(nId, pId) {
         <table class="add_list_table input tabContent">
             <tr>
                 <th class="padT20">角色名称：</th>
-                <td class="padT20">${(ROLE.roleName)!}</td>
+                <td class="padT20">${(ROLE.name)!}</td>
             </tr>            
             <tr>
                 <th class="padB56">角色描述：</th>
                 <td class="padB56">${(ROLE.description)!}</td>
-            </tr>
-            
-            <tr>
-                <th>菜单选项：</th>
-                <td>
-               		<script type="text/javascript">
-		
-						d = new dTree('d');
-						d.setConfig(false, 0);
-						d.add(0,-1,'菜单选项');
-						
-						<#list HV_MENU_LIST as menu>
-				     		d.add(${(menu.id)?c},${(menu.parentId)?c},"${menu.urlName}","/menu/add?pid=${menu.id}");
-						</#list>
-							
-						document.write(d);
-						d.openAll();
-						
-						<#list HV_MENU_LIST as menu>
-				     		$("#cd${(menu.id)?c}").attr("checked","true");
-						</#list>
-						
-					</script>
-                </td>
-            </tr>
-            
+            </tr>  
         </table>
         <!-- end of add_list_table -->
         

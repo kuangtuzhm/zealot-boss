@@ -17,7 +17,7 @@ $().ready(function() {
 		pop_warning("操作提示", "是否删除该角色的用户。", true, function() {
 					 $.ajax({
 						type : "post",
-						url : "userdelete?id=" + id,
+						url : "userdelete?uid=" + id+"&roleId="+roleId,
 						dataType: "json",
 						cache : false,
 						success: function(data){
@@ -49,24 +49,23 @@ $().ready(function() {
             <div class="pop_detailTable_show">
                 <table class="table_list table_list2" id="listTable">
                     <tr>
-			        	<th width="6%" >序号</th>
+			        	<th width="6%" >用户编号</th>
 						<th width="10%" orderField="info.name">账号</th>
 						<th width="6%" orderField="info.code">用户名称</th>
 						<th width="6%" orderField="info.code">状态</th>
 						<th width="8%">操作</th>
 			        </tr>
-			        <#if (list?size > 0)>
-        			<#list list as info>
+			        <#if (page.list?size > 0)>
+        			<#list page.list as info>
                     <tr class="even">
                         <td>
-			        		<!--<input type="checkbox" name="ids" value="${info.id}" />-->
-			        		${info.user.id}
+			        		${info.uid}
 			        	</td>
-						<td>${info.user.username}</td>
-						<td>${info.user.realname}</td>
-						<td><#if info.user.state == 0>停止<#else>启动</#if></td>
+						<td>${info.loginName}</td>
+						<td>${info.uname}</td>
+						<td><#if info.state == 0>停止<#else>启动</#if></td>
 						<td>
-			                <a class="btn_icon btn_delete" href="javascript:void(0);" title="删除" roleId="${info.rtsRole.id}" deleteId="${info.id}"></a>
+			                <a class="btn_icon btn_delete" href="javascript:void(0);" title="删除" roleId="${roleId}" deleteId="${info.uid}"></a>
 						</td>
                     </tr>
                     </#list>
@@ -77,6 +76,22 @@ $().ready(function() {
 					</#if>
                 </table>
             </div>
+            <#if (page.list?size > 0)>
+	            <!-- start of table_bottom -->
+			    <div class="table_bottom clearfix">
+			    	<!--
+			    	<div class="table_bottom_checkbox left">
+			    		<input id="selectAll" name="" type="checkbox" value=""><a class="btn" href="#" id="deleteAll">删除选中</a>
+			    	</div>
+			        -->
+			   		<!-- start of 分页 -->
+			   		<@paging pageNumber = page.pageNo totalPages = page.totalPage>
+						<#include "../commons/pager.ftl">
+					</@paging>
+			        <!-- end of 分页 -->
+			</#if>
+		    </div>
+		    <!-- end of table_bottom -->
         </div>
     </div>
 

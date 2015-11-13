@@ -1,6 +1,7 @@
 package com.zealot.boss.base.service.authorize.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.zealot.boss.base.dao.authorize.RightsDao;
@@ -18,6 +20,7 @@ import com.zealot.boss.base.service.authorize.RightsService;
 import com.zealot.exception.AppException;
 import com.zealot.exception.ResultException;
 import com.zealot.exception.message.MessageCode;
+import com.zealot.util.StringUtil;
 
 
 @Service("rightService")
@@ -42,23 +45,49 @@ public class RightsServiceImpl implements RightsService
     	return rightDao.getRightByCode(rightCode);
     }
     
-    public Integer saveRight(Rights right) throws AppException,ResultException
+    public String saveRight(Rights right) throws AppException,ResultException
     {
     	Rights r = getRightByCode(right.getRightCode());
     	if(r!=null)
     	{
     		StringBuffer buffer = new StringBuffer();
-			buffer.append("权限代码[").append(r.getRightCode()).append("]已经存在");
+			buffer.append("菜单编码[").append(r.getRightCode()).append("]已经存在");
 			logger.error(buffer.toString());
 			throw new ResultException(MessageCode.RIGHTS_CODE_EXITS);
     	}
-    	Integer rid = rightDao.saveRight(right);
+    	Date date = new Date();
+    	right.setCreateTime(date);
+    	right.setUpdateTime(date);
+    	String rid = rightDao.saveRight(right);
         return rid;
     }
 
     public void updateRight(Rights right) throws AppException
     {
-        rightDao.updateRight(right);
+    	Rights persistent = rightDao.getRightByCode(right.getRightCode());
+    	persistent.setRightDesc(right.getRightDesc());
+    	persistent.setIorder(right.getIorder());
+    	persistent.setOpenStyle(right.getOpenStyle());
+    	persistent.setUpdatedBy(right.getUpdatedBy());
+    	persistent.setUpdateTime(new Date());
+    	if(StringUtil.isNotEmpty(right.getIcon()))
+    	{
+    		persistent.setIcon(right.getIcon());
+    	}
+    	if(StringUtil.isNotEmpty(right.getBaseUrl()))
+    	{
+    		persistent.setBaseUrl(right.getBaseUrl());
+    	}
+    	if(StringUtil.isNotEmpty(right.getUri()))
+    	{
+    		persistent.setUri(right.getUri());
+    	}
+    	//下边这种属性拷贝方式如果属性有null，则会报错，而且性能不高
+//    	String[] ignoreArray = { "rightCode", "createTime", "state","createdBy","parentCode","sysCode","type", };
+//    	Rights persistent = getRightByCode(right.getRightCode());
+//		BeanUtils.copyProperties(right, persistent, ignoreArray);
+    	
+        rightDao.updateRight(persistent);
     }
 
     public void deleteRights(String rightCode) throws AppException
@@ -114,7 +143,7 @@ public class RightsServiceImpl implements RightsService
 	        }
 	        for(SimpleRights sr : allRights)
 	        {
-	            if(map.containsKey(sr.getId()))
+	            if(map.containsKey(sr.getRightCode()))
 	            {
 	                sr.setChecked(true);
 	            }
@@ -189,9 +218,9 @@ public class RightsServiceImpl implements RightsService
       
     private List<SimpleRights> getChildren(SimpleRights node,List<SimpleRights> allRights){  
         List<SimpleRights> children = new ArrayList<SimpleRights>();  
-        String id = node.getId();  
+        String id = node.getRightCode();
         for (SimpleRights child : allRights) {  
-            if (id.equals(child.getPid())) {  
+            if (id.equals(child.getParentCode())) {  
                 children.add(child);  
             }  
         }  

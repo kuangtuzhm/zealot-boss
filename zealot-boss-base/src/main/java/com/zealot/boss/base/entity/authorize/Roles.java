@@ -3,6 +3,8 @@ package com.zealot.boss.base.entity.authorize;
 import java.io.Serializable;
 import java.util.List;
 
+import com.zealot.model.entity.BaseEntity;
+
 /**
  * 角色(组)
  * @version 	1.0 2012-11-7
@@ -10,7 +12,7 @@ import java.util.List;
  * @history	
  *
  */
-public class Roles implements Serializable 
+public class Roles extends BaseEntity implements Serializable 
 {
 	private static final long serialVersionUID = -7985316023382235349L;
 	
@@ -19,21 +21,31 @@ public class Roles implements Serializable
 	/**角色(组)名**/
 	private String name;
 	
+	/**
+	 * 描述
+	 */
+	private String description;
+	
 	private Integer root;
 	
 	/**状态**/
 	private Integer state;
-	/**创建时间**/
-	private String createTime;
-	
-	/**修改时间**/
-    private String updateTime;
+    
 	
 	/**角色(组)下的权限**/
 	private List<Rights> rights;
 	
-	
-	
+	/**
+	 * 用户分配角色时标志用户是否具有角色
+	 */
+	private boolean hasRole = false;
+
+	public boolean isHasRole() {
+		return hasRole;
+	}
+	public void setHasRole(boolean hasRole) {
+		this.hasRole = hasRole;
+	}
 	public Integer getId()
     {
         return id;
@@ -64,27 +76,19 @@ public class Roles implements Serializable
     {
         this.state = state;
     }
-    public String getCreateTime()
-    {
-        return createTime;
-    }
-    public void setCreateTime(String createTime)
-    {
-        this.createTime = createTime;
-    }
-    public String getUpdateTime()
-    {
-        return updateTime;
-    }
-    public void setUpdateTime(String updateTime)
-    {
-        this.updateTime = updateTime;
-    }
+
     public List<Rights> getRights() {
 		return rights;
 	}
 	public void setRights(List<Rights> rights) {
 		this.rights = rights;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	@Override
@@ -93,6 +97,7 @@ public class Roles implements Serializable
 		StringBuffer buffer=new StringBuffer();
 		buffer.append("roleId : ").append(id);
 		buffer.append(" roleName : ").append(name);
+		buffer.append(" description : ").append(description);
 		return buffer.toString();
 	}
 }

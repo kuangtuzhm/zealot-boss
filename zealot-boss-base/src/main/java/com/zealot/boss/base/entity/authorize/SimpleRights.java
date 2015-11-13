@@ -14,54 +14,67 @@ public class SimpleRights implements Serializable
 {
 	private static final long serialVersionUID = 1629018043539614522L;
 	/**权限号**/
-	private String id;
+	private String rightCode;
 	/**父节点号**/
-	private String pid;
+	private String parentCode;
+	
+	/**
+	 * 系统代码
+	 */
+	private String sysCode;
+	
 	/**权限描述**/
-	private String name;
+	private String rightDesc;
 	
 	private Integer type;
 	
-	private Integer indexNum;
+	private Integer iorder;
 	
-	private boolean open = true;
-	
-	private boolean checked = false;
-	
+	private boolean checked;
+
 	private List<SimpleRights> childList;
 	
-	
-    public String getId()
-    {
-        return id;
-    }
-
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-    
-
-    public String getPid() {
-		return pid;
+	public String getRightCode() {
+		return rightCode;
 	}
 
-	public void setPid(String pid) {
-		this.pid = pid;
+
+	public void setRightCode(String rightCode) {
+		this.rightCode = rightCode;
 	}
 
-	public String getName()
-    {
-        return name;
-    }
+
+	public String getParentCode() {
+		return parentCode;
+	}
 
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
 
-    public Integer getType() {
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+
+	public String getRightDesc() {
+		return rightDesc;
+	}
+
+
+	public void setRightDesc(String rightDesc) {
+		this.rightDesc = rightDesc;
+	}
+
+
+	public Integer getType() {
 		return type;
 	}
 
@@ -69,31 +82,20 @@ public class SimpleRights implements Serializable
 		this.type = type;
 	}
 
-	public Integer getIndexNum()
-    {
-        return indexNum;
-    }
+	public Integer getIorder() {
+		return iorder;
+	}
 
 
-    public void setIndexNum(Integer indexNum)
-    {
-        this.indexNum = indexNum;
-    }
+	public void setIorder(Integer iorder) {
+		this.iorder = iorder;
+	}
 
 
-    public boolean isOpen()
-    {
-        return open;
-    }
-
-    public void setOpen(boolean open)
-    {
-        this.open = open;
-    }
-
-    public boolean isChecked() {
+	public boolean isChecked() {
 		return checked;
 	}
+
 
 	public void setChecked(boolean checked) {
 		this.checked = checked;
@@ -103,17 +105,19 @@ public class SimpleRights implements Serializable
 		return childList;
 	}
 
+
 	public void setChildList(List<SimpleRights> childList) {
 		this.childList = childList;
 	}
+
 
 	@Override
 	public String toString()
 	{
 		StringBuffer buffer=new StringBuffer();
-		buffer.append("rightCode : ").append(id);
-		buffer.append(" rightDesc : ").append(name);
-		buffer.append(" parentCode : ").append(pid);
+		buffer.append("rightCode : ").append(rightCode);
+		buffer.append(" rightDesc : ").append(rightDesc);
+		buffer.append(" parentCode : ").append(parentCode);
 		return buffer.toString();
 	}
 

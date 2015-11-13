@@ -14,11 +14,13 @@ public interface RolesDao
     
     public Roles findRoleById(int id) throws AppException;
     
-    public Roles findRoleByName(String name) throws AppException;
+    public List<Roles> findRoleByName(String name) throws AppException;
     
     public Pagination<Roles> queryPage(Roles role,int pageNo, int pageSize) throws AppException;
     
     public List<Roles> getUserRoles(Integer uid) throws AppException;
     
     public List<Roles> getRoles(Integer state) throws AppException;
+    
+    public boolean isExistByName(String name) throws AppException;
 }

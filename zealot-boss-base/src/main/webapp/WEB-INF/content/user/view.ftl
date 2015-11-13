@@ -5,8 +5,6 @@
 <title>用户详情</title>
 <#include "../commons/page_css.ftl" />
 <#include "../commons/page_js.ftl" />
-<link rel="StyleSheet" href="/css/dtree/dtree.css" type="text/css" />
-<script type="text/javascript" src="/js/dtree/dtree.js"></script>
 
 </head>
 
@@ -25,40 +23,35 @@
         <table class="add_list_table input tabContent">
             <tr>
                 <th class="padT20">用户名：</th>
-                <td class="padT20">${(USER.username)!}</td>
+                <td class="padT20">${(USER.loginName)!}</td>
             </tr>
             <tr>
                 <th class="padT20">真实姓名：</th>
-                <td class="padT20">${(USER.realname)!}</td>
+                <td class="padT20">${(USER.uname)!}</td>
             </tr>
             <tr>
                 <th class="padT20">管理员：</th>
                 <td class="padT20">
-                	<#if USER.isadmin == 0>否</#if>
-                	<#if USER.isadmin == 1>是</#if>
+                	<#if USER.isAdmin == 0>否</#if>
+                	<#if USER.isAdmin == 1>是</#if>
                 </td>
             </tr>
             <tr>
                 <th class="padT20">手机：</th>
-                <td class="padT20">${(USER.mobile)!}</td>
+                <td class="padT20">${(USER.phoneNum)!}</td>
             </tr>
             <tr>
                 <th class="padT20">邮箱：</th>
                 <td class="padT20">${(USER.email)!}</td>
             </tr>
-                        
             <tr>
-                <th>角色选项：</th>
-                <td>
-               		<#list USER.rtsUserRoles as rtsUserRole>
-						${rtsUserRole.rtsRole.roleName} 
-					</#list>
-                </td>
+                <th class="padT20">所属部门：</th>
+                <td class="padT20">${(USER.department.name)!}</td>
             </tr>
             <tr>
                 <th class="padT20">状态：</th>
                 <td class="padT20">
-                	<#if USER.state == 1>启动</#if>
+                	<#if USER.state == 1>正常</#if>
                 	<#if USER.state == 0>禁用</#if>
                 </td>
             </tr>

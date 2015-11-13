@@ -3,15 +3,18 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.zealot.boss.base.entity.authorize.Roles" table="role">
+    <class name="com.zealot.boss.base.entity.authorize.Roles" table="role" dynamic-update="true">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="native"/>
         </id>
         <property name="name" column="name" type="java.lang.String"/>
+        <property name="description" column="description" type="java.lang.String"/>
         <property name="root" column="root" type="java.lang.Integer"/>
         <property name="state" column="state" type="java.lang.Integer"/>
-        <property name="createTime" column="createTime" type="java.lang.String"/>
-        <property name="updateTime" column="updateTime" type="java.lang.String"/>
+        <property name="createdBy" column="createdBy" type="java.lang.Integer"/>
+        <property name="updatedBy" column="updatedBy" type="java.lang.Integer"/>
+        <property name="createTime" column="createTime" type="java.util.Date"/>
+        <property name="updateTime" column="updateTime" type="java.util.Date"/>
     </class>
 </hibernate-mapping>

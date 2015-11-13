@@ -159,6 +159,14 @@ dTree.prototype.cc = function(nId, pId) {
                 <td class="padT20"><input class="c_input_text text" type="text" name="email" value="" maxlength="250"></td>
             </tr>
             <tr>
+                <th class="padT20">所属部门：</th>
+                <td class="padT20">
+                	<input class="c_input_text text" type="text" id="depart" name="depart" value="${(USER.department.name)!}" maxlength="250" readonly onclick="showMenu(); return false;" />
+                	<input type="hidden" id="departId" name="department.id" value="${(USER.department.id)!}" />
+                	<a id="menuBtn" href="javascript:void(0);" onclick="showMenu(); return false;">选择</a>
+                </td>
+            </tr>
+            <tr>
                 <th class="padT20">状态：</th>
                 <td class="padT20">
                 	<input name="state" value='1' type='radio' checked="checked" />启动

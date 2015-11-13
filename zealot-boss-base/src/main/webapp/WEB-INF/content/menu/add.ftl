@@ -14,7 +14,9 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		rules: {
-			"urlName": "required",
+			"rightCode": "required",
+			"rightDesc": "required",
+			"sysCode" : "required",
 			"iorder": {
 				required: true,
 				digits: true
@@ -42,7 +44,6 @@ $().ready(function() {
 <div class="con_right_main">
 
 	<form id="inputForm" method="post" action="save">
-	<input type="hidden" name="state" value="1" />
 	
     <!-- start of con_search -->
 	<div class="con_search">
@@ -51,9 +52,22 @@ $().ready(function() {
         
         <!-- start of add_list_table -->
         <table class="add_list_table input tabContent">
+        	<tr>
+                <th class="padT20">系统编码：</th>
+                <td class="padT20"><input class="c_input_text text" <#if parentCode != '0'>readonly="true"</#if> type="text" name="sysCode" value="${(PARENT_MENU.sysCode)!}"></td>
+            </tr>
+            <tr>
+                <th class="padT20">父菜单编码：</th>
+                <td class="padT20"><input class="c_input_text text" type="text" name="parentCode" value="${parentCode}" readonly="true"></td>
+                <input type="hidden" name="path" value="${(PARENT_MENU.path)!}" />
+            </tr>
+        	<tr>
+                <th class="padT20">菜单编码：</th>
+                <td class="padT20"><input class="c_input_text text" type="text" name="rightCode" value=""></td>
+            </tr>
             <tr>
                 <th class="padT20">菜单名称：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="urlName" value=""></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="rightDesc" value=""></td>
             </tr>
             <tr>
                 <th>打开模式：</th>
@@ -63,20 +77,20 @@ $().ready(function() {
                 </td>
             </tr>
             
-          	<#if parentId == 0>
+          	<#if parentCode == '0'>
           	<tr>
                 <th>ICON地址：</th>
-                <td><input class="c_input_text text" type="text" name="iconUrl" value=""></td>
+                <td><input class="c_input_text text" type="text" name="icon" value=""></td>
             </tr>
             <tr>
                 <th>顶级菜单地址：</th>
                 <td><input class="c_input_text text" type="text" name="baseUrl" value=""></td>
             </tr>
             <#else>
-	            <#if PARENT_MENU.grade == 3 >
+	            <#if PARENT_MENU.type == 3 >
 	            <tr>
 	                <th>菜单地址：</th>
-	                <td>${(PARENT_MENU.baseUrl)!}<input class="c_input_text text" type="text" name="url" value=""></td>
+	                <td>${(PARENT_MENU.baseUrl)!}<input class="c_input_text text" type="text" name="uri" value=""></td>
 	            </tr>
 	            <tr>
 	                <th>是否隐藏左侧菜单：</th>
@@ -87,14 +101,6 @@ $().ready(function() {
 	            </tr>
 	            </#if>
             </#if>
-            
-            <tr>
-                <th>上级菜单：</th>
-                <td>
-                	<#if parentId != 0>${(PARENT_MENU.urlName)!}<#else>顶级菜单</#if>
-					<input type="hidden" name="parentId" value="${parentId}" />
-                </td>
-            </tr>
             
             <tr>
                 <th>排序：</th>

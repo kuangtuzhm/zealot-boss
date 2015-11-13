@@ -10,7 +10,7 @@ public interface RightsDao
 {
 	public Rights getRightByCode(String rightCode) throws AppException;
 	
-    public Integer saveRight(Rights right) throws AppException;
+    public String saveRight(Rights right) throws AppException;
     
     public void updateRight(Rights right) throws AppException;
     

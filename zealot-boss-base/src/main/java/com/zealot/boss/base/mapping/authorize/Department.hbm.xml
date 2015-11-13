@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.zealot.boss.base.entity.authorize.Department" table="department">
+    <class name="com.zealot.boss.base.entity.authorize.Department" table="department" dynamic-update="true">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="native" />
@@ -15,7 +15,7 @@
         <property name="iorder" column="iorder" type="java.lang.Integer"/>
         <property name="createdBy" column="createdBy" type="java.lang.Integer"/>
         <property name="updatedBy" column="updatedBy" type="java.lang.Integer"/>
-        <property name="createTime" column="createTime" type="java.lang.String"/>
-        <property name="updateTime" column="updateTime" type="java.lang.String"/>
+        <property name="createTime" column="createTime" type="java.util.Date"/>
+        <property name="updateTime" column="updateTime" type="java.util.Date"/>
     </class>
 </hibernate-mapping>

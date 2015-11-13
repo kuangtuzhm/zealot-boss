@@ -3,6 +3,7 @@ package com.zealot.boss.base.service.authorize;
 import com.zealot.boss.base.entity.authorize.User;
 import com.zealot.exception.AppException;
 import com.zealot.exception.ResultException;
+import com.zealot.model.entity.Operator;
 import com.zealot.orm.model.Pagination;
 
 
@@ -35,7 +36,7 @@ public interface UserService
      * @return
      * @throws AppException
      * @throws ResultException
-     * @作者 Administrator
+     * @作者 赵海明
      * @创建时间 2015-3-9 下午6:06:07
      */
     public boolean validUserAdd(User user) throws AppException,ResultException;
@@ -67,6 +68,20 @@ public interface UserService
      * @创建时间 2015-7-2 下午4:42:06
      */
     public void updateUserState(User user) throws AppException;
+    
+    /**
+     * 删除用户
+     * @param uid
+     * @throws AppException
+     */
+    public void delete(Integer uid, Operator<Integer> operator) throws AppException,ResultException;
+    
+    /**
+     * 删除用户
+     * @param uid
+     * @throws AppException
+     */
+    public void delete(Integer uids[], Operator<Integer> operator) throws AppException,ResultException;
     
     /**
      * 通过用户id查找用户
@@ -101,4 +116,13 @@ public interface UserService
     public Pagination<User> queryUserList(User user,int pageNo, int pageSize) throws AppException;
     
     public Pagination<User> queryRoleUsers(Integer roleId,int pageNo, int pageSize) throws AppException;
+    
+    /**
+     * 修改和增加时对用户名进行唯一验证
+     * @param oldUsername
+     * @param newUsername
+     * @return
+     * @throws AppException
+     */
+    public boolean isUniqueByUsername(String oldUsername, String newUsername) throws AppException;
 }

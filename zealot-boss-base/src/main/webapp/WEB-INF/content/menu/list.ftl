@@ -21,16 +21,16 @@ $(function() {
 	$('#context a').contextMenu('menu', {
  		bindings: {
 			'add': function(t, target) {
-         		location.href = 'add?pid=' + t.id;
+         		location.href = 'add?rightCode=' + t.id;
    			},
         	'edit': function(t, target) {
-            	location.href = 'edit?id=' + t.id;
+            	location.href = 'edit?rightCode=' + t.id;
   			},
      		'delete': function(t, target) {
   				pop_warning("操作提示", "是否删除菜单。", true, function() {
 					 $.ajax({
 						type : "post",
-						url : "delete?id=" + t.id,
+						url : "delete?rightCode=" + t.id,
 						dataType: "json",
 						cache : false,
 						success: function(data){
@@ -88,11 +88,10 @@ $(function() {
 		
 				d = new dTree('d');
 				d.setConfig(true, 0);
-				d.add(0,-1,'菜单管理');
+				d.add('0','-1','菜单管理');
 				
 				<#list MENU_LIST as menu>
-		     		<!-- d.add(${(menu.id)?c},${(menu.parentId)?c},"<a id='${(menu.id)?c}'>${menu.urlName}<a>","/menu/add?pid=${(menu.id)?c}"); -->
-		     		d.add(${(menu.id)?c},${(menu.parentId)?c},"<a id='${(menu.id)?c}'>${menu.urlName}<a>");
+		     		d.add('${menu.rightCode}','${menu.parentCode}',"<a id='${menu.rightCode}'>${menu.rightDesc}<a>");
 				</#list>
 					
 				document.write(d);

@@ -54,6 +54,11 @@ public class User extends BaseEntity implements java.io.Serializable {
 	 * 是否超级管理员
 	 */
 	private Integer isAdmin;
+	
+	/**
+	 * 部门
+	 */
+	private Department department;
 
 	/** 用户所有角色(组)信息 **/
 	private List<Roles> roles;
@@ -150,6 +155,15 @@ public class User extends BaseEntity implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 }

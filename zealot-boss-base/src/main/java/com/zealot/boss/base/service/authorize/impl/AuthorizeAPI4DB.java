@@ -25,8 +25,8 @@ public class AuthorizeAPI4DB implements AuthorizeAPI {
 	
 	@Override
 	public List<Integer> getUserRoles(Integer uid) throws AppException {
-		List<Integer> list = null;
-		if(userRoleMap.get(uid).isEmpty())
+		List<Integer> list = userRoleMap.get(uid);
+		if(list==null || list.isEmpty())
 		{
 			synchronized(this)
 			{
@@ -43,14 +43,15 @@ public class AuthorizeAPI4DB implements AuthorizeAPI {
 	@Override
 	public List<Integer> getRightRoles(String rightCode) throws AppException {
 		
-		if(rightRoleMap.get(rightCode).isEmpty())
+		List list = rightRoleMap.get(rightCode);
+		if(list==null ||list.isEmpty())
 		{
 			synchronized(this)
 			{
 				String hql = "select roleId from RoleRight where rightCode = ?";
 		    	List<Object> param = new ArrayList<Object>();
 		        param.add(rightCode);
-		        List<Integer> list = baseDAO.find(hql, param);
+		        list = baseDAO.find(hql, param);
 		        rightRoleMap.put(rightCode, list);
 			}
 		}

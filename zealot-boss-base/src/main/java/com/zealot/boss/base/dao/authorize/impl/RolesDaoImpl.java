@@ -39,10 +39,10 @@ public class RolesDaoImpl implements RolesDao
         return baseDAO.get(Roles.class,id);
     }
 
-    public Roles findRoleByName(String name) throws AppException
+    public List<Roles> findRoleByName(String name) throws AppException
     {
         String hql = " from Roles where name= ?";
-        return baseDAO.get(hql,new Object[] { name });
+        return baseDAO.find(hql,new Object[] { name });
     }
 
     public Pagination<Roles> queryPage(Roles role, int pageNo, int pageSize) throws AppException
@@ -81,5 +81,16 @@ public class RolesDaoImpl implements RolesDao
         param.add(state);
         List<Roles> list = baseDAO.find(hql, param);
         return list;
+	}
+    
+    public boolean isExistByName(String name) throws AppException{
+		String hql = "select count(1) from Roles where name = ?";
+		List<Object> param = new ArrayList<Object>();
+		param.add(name);
+	    if(baseDAO.count(hql, param) > 0) {
+	    	return true;
+	    } else {
+			return false;
+		}
 	}
 }

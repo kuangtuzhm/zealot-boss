@@ -1,10 +1,11 @@
 package com.zealot.boss.base.service.authorize.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -13,7 +14,6 @@ import com.zealot.boss.base.dao.authorize.UserRoleDao;
 import com.zealot.boss.base.entity.authorize.Roles;
 import com.zealot.boss.base.entity.authorize.UserRole;
 import com.zealot.boss.base.service.authorize.AuthorizationService;
-import com.zealot.boss.base.service.authorize.RightsService;
 import com.zealot.boss.base.service.authorize.RoleService;
 import com.zealot.exception.AppException;
 import com.zealot.exception.ResultException;
@@ -26,7 +26,7 @@ import com.zealot.util.ValidateUtil;
 public class RoleServiceImpl implements RoleService
 {
 
-	private Logger logger = Logger.getLogger(this.getClass());
+	//private Logger logger = Logger.getLogger(this.getClass());
 	
     @Resource(name="roleDao")
     private RolesDao roleDao;
@@ -34,8 +34,17 @@ public class RoleServiceImpl implements RoleService
     @Resource(name="userRoleDao")
     private UserRoleDao userRoleDao;
     
+    @Resource(name="authorizationService")
+    private AuthorizationService authorizationService;
+    
     public Integer saveRole(Roles role,List<String> list) throws AppException,ResultException
     {
+    	role.setState(1);
+    	role.setRoot(0);
+    	Date date = new Date();
+    	role.setCreateTime(date);
+    	role.setUpdateTime(date);
+    	validRoleAdd(role);
     	Integer roleId = roleDao.saveRole(role);
         return roleId;
         
@@ -44,16 +53,25 @@ public class RoleServiceImpl implements RoleService
     public void updateRole(Roles role,List<String> list) throws AppException,ResultException
     {
         Roles r = findRoleById(role.getId());
+        if(!isUniqueByName(r.getName(),role.getName()))
+        {
+        	throw new ResultException(MessageCode.ROLE_NAME_EXITS);
+        }
         if(null != r)
         {
             if(ValidateUtil.isNotEmpty(role.getName()))
             {
                 r.setName(role.getName());
             }
+            if(ValidateUtil.isNotEmpty(role.getDescription()))
+            {
+            	r.setDescription(role.getDescription());
+            }
             if(ValidateUtil.isNotEmpty(role.getState()))
             {
                 r.setState(role.getState());
             }
+            r.setUpdatedBy(role.getUpdatedBy());
             r.setUpdateTime(role.getUpdateTime());
             roleDao.updateRole(r);
         }
@@ -73,14 +91,15 @@ public class RoleServiceImpl implements RoleService
                 r.setState(role.getState());
             }
             r.setUpdateTime(role.getUpdateTime());
+            r.setUpdatedBy(role.getUpdatedBy());
             roleDao.updateRole(r);
         }
     }
 
     public boolean validRoleAdd(Roles role) throws AppException, ResultException
     {
-        Roles r = roleDao.findRoleByName(role.getName());
-        if(null != r)
+    	boolean f = roleDao.isExistByName(role.getName());
+        if(f)
         {
             throw new ResultException(MessageCode.ROLE_NAME_EXITS);
         }
@@ -113,22 +132,20 @@ public class RoleServiceImpl implements RoleService
 		return roleDao.getRoles(state);
 	}
 	
-	public void addUserRole(Integer userId, List<Integer> roleIds) throws AppException
+	public void addUserRole(Integer userId, Integer [] roleIds) throws AppException
     {
-
+		userRoleDao.deleteUserRole(userId);
 		UserRole ur = null;
 		for (Integer roleId : roleIds) {
-			if (userHasRole(userId, roleId)) {
-				logger.warn("用户userId[" + userId + "] 已经在此角色下 roleId[" + roleId
-						+ "]");
-				continue;
-			}
+//			if (userHasRole(userId, roleId)) {
+//				continue;
+//			}
 			ur = new UserRole();
 			ur.setRoleId(roleId);
 			ur.setUid(userId);
 			userRoleDao.saveUserRole(ur);
 		}
-
+		authorizationService.clearUserRoles(userId);
 	}
 
 	public void deleteUserRole(Integer userId, List<Integer> roleIds)
@@ -142,6 +159,7 @@ public class RoleServiceImpl implements RoleService
 			ur.setUid(userId);
 			userRoleDao.deleteUserRole(ur);
 		}
+		authorizationService.clearUserRoles(userId);
 	}
 	
 	/**
@@ -170,5 +188,17 @@ public class RoleServiceImpl implements RoleService
 			}
 		}
 		return has;
+	}
+	
+	public boolean isUniqueByName(String oldName, String newName) throws AppException{
+		if (StringUtils.equalsIgnoreCase(oldName, newName)) {
+			return true;
+		} else {
+			if (roleDao.isExistByName(newName)) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 	}
 }

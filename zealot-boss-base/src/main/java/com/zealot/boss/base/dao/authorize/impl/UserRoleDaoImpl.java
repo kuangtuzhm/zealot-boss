@@ -31,6 +31,13 @@ public class UserRoleDaoImpl implements UserRoleDao
         param.add(userRole.getUid());
         param.add(userRole.getRoleId());
         baseDAO.executeHql(hql, param);
+	}
+	
+	public void deleteUserRole(Integer uid) throws AppException {
 		
+		String hql = "delete from UserRole where uid= ?";
+    	List<Object> param = new ArrayList<Object>();
+        param.add(uid);
+        baseDAO.executeHql(hql, param);
 	}
 }

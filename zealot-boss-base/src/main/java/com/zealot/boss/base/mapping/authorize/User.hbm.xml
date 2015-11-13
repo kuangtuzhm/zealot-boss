@@ -14,6 +14,14 @@
         <property name="state" column="state" type="java.lang.Integer"/>
         <property name="email" column="email" type="java.lang.String"/>
         <property name="phoneNum" column="phoneNum" type="java.lang.String"/>
+        <!--  
+        <property name="depId" column="depId" type="java.lang.Integer"/>
+        -->
+        <many-to-one name="department" class="com.zealot.boss.base.entity.authorize.Department" fetch="join" lazy="proxy">
+            <column name="depId" >
+            	<comment>部门ID</comment>
+            </column>
+        </many-to-one>
         <property name="isAdmin" column="isAdmin" type="java.lang.Integer"/>
         <property name="createdBy" column="createdBy" type="java.lang.Integer"/>
         <property name="updatedBy" column="updatedBy" type="java.lang.Integer"/>

@@ -20,7 +20,7 @@ public interface RightsService
 	
 	public Rights getRightByCode(String rightCode) throws AppException;
 	
-	public Integer saveRight(Rights right) throws AppException,ResultException;
+	public String saveRight(Rights right) throws AppException,ResultException;
     
     public void updateRight(Rights right) throws AppException;
     

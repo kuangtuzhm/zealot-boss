@@ -10,8 +10,8 @@
  	<config.version>1.0</config.version>
  	<zealot.version>1.0</zealot.version>
  	<cas.client.version>3.4.1</cas.client.version>
- 	<jackson.version>2.6.0</jackson.version>
  	<aspectj.version>1.8.6</aspectj.version>
+ 	<mail.version>1.4.4</mail.version>
   </properties>
   
   <dependencyManagement>
@@ -46,25 +46,7 @@
   			<artifactId>zealot-web</artifactId>
   			<version>${zealot.version}</version>
   		</dependency>
-  		
-  		<dependency>
-		  <groupId>com.fasterxml.jackson.core</groupId>
-		  <artifactId>jackson-core</artifactId>
-		  <version>${jackson.version}</version>
-		</dependency>
-
-		<dependency>
-		  <groupId>com.fasterxml.jackson.core</groupId>
-		  <artifactId>jackson-databind</artifactId>
-		  <version>${jackson.version}</version>
-		</dependency>
-
-		<dependency>
-		  <groupId>com.fasterxml.jackson.core</groupId>
-		  <artifactId>jackson-annotations</artifactId>
-		  <version>${jackson.version}</version>
-		</dependency>
-		
+	
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -83,6 +65,12 @@
   			<artifactId>cas-client-core</artifactId>
   			<version>${cas.client.version}</version>
   		</dependency>
+  		
+  		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail.version}</version>
+		</dependency>
   	</dependencies>
   </dependencyManagement>
   <build>

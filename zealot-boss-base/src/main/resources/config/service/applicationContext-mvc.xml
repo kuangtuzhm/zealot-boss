@@ -13,11 +13,6 @@
    		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
     	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
   		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-
-	<!-- 启用注解识别功能 -->
-	<context:annotation-config />
-
-	<context:component-scan base-package="com.zealot.boss" />
 	
 	<mvc:annotation-driven validator="validator" />
 
@@ -81,9 +76,12 @@
 				</entry>
 				<entry key="xml_escape" value-ref="fmXmlEscape" />
 				<entry key="authorize" value-ref="authorizeDirective"/>
+				<entry key="paging" value-ref="paginationDirective"/>
 			</map>
 		</property>
 	</bean>
+	
+	<bean id="paginationDirective" class="com.zealot.web.freemarker.tags.PaginationDirective" />
 
 	<bean id='viewResolver'
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"

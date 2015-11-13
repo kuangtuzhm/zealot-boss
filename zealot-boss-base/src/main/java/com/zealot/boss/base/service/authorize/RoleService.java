@@ -27,7 +27,9 @@ public interface RoleService
     
     public List<Roles> getRoles(Integer state) throws AppException;
     
-    public void addUserRole(Integer userId, List<Integer> roleIds) throws AppException;
+    public void addUserRole(Integer userId, Integer [] roleIds) throws AppException;
+    
+    public boolean isUniqueByName(String oldName, String newName) throws AppException;
     
     public void deleteUserRole(Integer userId, List<Integer> roleIds)
 			throws AppException;

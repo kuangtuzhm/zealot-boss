@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.zealot.boss.base.entity.authorize.Rights" table="rights">
+    <class name="com.zealot.boss.base.entity.authorize.Rights" table="rights" dynamic-update="true">
         <id name="rightCode" type="java.lang.String">
             <column name="right_code" />
             <generator class="assigned" />

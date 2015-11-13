@@ -33,9 +33,9 @@ public class RightsDaoImpl implements RightsDao
         return rights;
     }
     
-    public Integer saveRight(Rights right) throws AppException
+    public String saveRight(Rights right) throws AppException
     {
-        return (Integer)baseDAO.save(right);
+        return (String)baseDAO.save(right);
     }
 
     public void updateRight(Rights right) throws AppException
@@ -74,7 +74,7 @@ public class RightsDaoImpl implements RightsDao
             hql += " and  state=?";
             param.add(state);
         }
-        hql += " order by pid,index_num";
+        hql += " order by parentCode,iorder";
         List<SimpleRights> rights = (List<SimpleRights>) simpleBaseDAO.find(hql, param);
         if (rights == null) {
             rights = new ArrayList<SimpleRights>();

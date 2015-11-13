@@ -53,7 +53,7 @@ function openStyleClick(val) {
 <div class="con_right_main">
 
 	<form id="inputForm" method="post" action="update">
-	<input type="hidden" name="id" value="${MENU.id}" />
+	<input type="hidden" name="rightCode" value="${MENU.rightCode}" />
 	
     <!-- start of con_search -->
 	<div class="con_search">
@@ -64,7 +64,7 @@ function openStyleClick(val) {
         <table class="add_list_table input tabContent">
             <tr>
                 <th class="padT20">菜单名称：</th>
-                <td class="padT20"><input class="c_input_text text" type="text" name="urlName" value="${(MENU.urlName)!''}" /></td>
+                <td class="padT20"><input class="c_input_text text" type="text" name="rightDesc" value="${(MENU.rightDesc)!''}" /></td>
             </tr>
             <tr>
                 <th>打开模式：</th>
@@ -73,32 +73,21 @@ function openStyleClick(val) {
                 	<input name="openStyle" value='1' type='radio' <#if MENU.openStyle == 1>checked="checked"</#if> onclick="openStyleClick(1)" />新系统
                 </td>
             </tr>
-            <tr>
-                <th>上级菜单：</th>
-                <td>
-                	<#if parentId != 0>
-                		${PARENT_MENU.urlName}
-					<#else>
-						顶级菜单
-					</#if>
-					<input type="hidden" name="parentId" value="${(MENU.parentId)!}" />
-                </td>
-            </tr>
             
-            <#if parentId == 0>
+            <#if parentCode == '0'>
          	<tr>
                 <th>ICON地址：</th>
-                <td><input class="c_input_text text" type="text" name="iconUrl" value="${(MENU.iconUrl)!''}"></td>
+                <td><input class="c_input_text text" type="text" name="icon" value="${(MENU.icon)!''}"></td>
             </tr>
             <tr>
                 <th>顶级菜单地址：</th>
                 <td><input class="c_input_text text" type="text" name="baseUrl" value="${(MENU.baseUrl)!''}"></td>
             </tr>
             <#else>
-	            <#if PARENT_MENU.grade == 3 >
+	            <#if PARENT_MENU.type == 3 >
 	            <tr>
 	                <th>菜单地址：</th>
-	                <td><span id="baseUrlSpan">${(PARENT_MENU.baseUrl)!}</span><input class="c_input_text text" type="text" name="url" value="${(MENU.url)!}"></td>
+	                <td><span id="baseUrlSpan">${(PARENT_MENU.baseUrl)!}</span><input class="c_input_text text" type="text" name="uri" value="${(MENU.uri)!}"></td>
 	            </tr>
 	           	<tr>
 	                <th>是否隐藏左侧菜单：</th>

@@ -68,8 +68,15 @@ $().ready(function() {
         	<div class="con_search_top_L left">
                 <p>
                     <span class="group"><label>角色名称：</label>
-                    	<input type="text" name="keyword" class="c_input_text" realValue="输入角色名称" value="${(search.keyword)!''}" />
-                		<input type="hidden" name="searchBy" value="roleName" />
+                    	<input type="text" name="name" class="c_input_text" style="width:140px;" realValue="输入角色名称" value="${(role.name)!''}" />
+                    </span>
+                    <span class="group">
+                    	<label>状态：</label>
+                    	<select class="c_select" name="state" id="state" style="width:140px;">  
+                    		<option value="">全部</option>		            		
+		            		<option value="1" <#if (role.state)?? && role.state == 1>selected</#if>>正常</option>
+		            		<option value="0" <#if (role.state)?? && role.state == 0>selected</#if>>停止</option>
+		                </select>
                     </span>
                     <span class="group"><a id="searchButton" href="javascript:;" class="btn_search">搜索</a></span>
                 </p>
@@ -91,7 +98,6 @@ $().ready(function() {
         <tr>
         	<th width="6%" >序号</th>
 			<th width="15%" orderField="info.name">角色名称</th>
-			<th width="20%" orderField="info.code">所属部门</th>
 			<th width="6%" orderField="info.code">状态</th>
 			<th width="6%" orderField="info.code">创建时间</th>
 			<th width="15%">操作</th>
@@ -102,16 +108,7 @@ $().ready(function() {
         	<td>
         		<!--<input type="checkbox" name="ids" value="${info.id}" />-->${info.id}
         	</td>
-			<td>${(info.roleName)!}</td>
-			<td>
-				<#if info.departPath??>
-				<@depart path=info.departPath>
-				${pathName}
-				</@depart>
-				<#else>
-				-
-				</#if>
-			</td>
+			<td>${(info.name)!}</td>
 			<td><#if info.state == 0>停止<#else>启动</#if></td>
 			<td><#if info.createTime??>${info.createTime?string('yyyy-MM-dd')}<#else>-</#if></td>
 			<td>

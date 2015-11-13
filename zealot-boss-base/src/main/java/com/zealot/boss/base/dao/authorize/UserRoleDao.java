@@ -9,4 +9,11 @@ public interface UserRoleDao
     public void saveUserRole(UserRole userRole) throws AppException;  
       
     public void deleteUserRole(UserRole userRole) throws AppException;
+    
+    /**
+     * 根据用户删除用户所有权限
+     * @param uid
+     * @throws AppException
+     */
+    public void deleteUserRole(Integer uid) throws AppException;
 }
