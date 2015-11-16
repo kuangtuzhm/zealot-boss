@@ -100,7 +100,6 @@ public class UserMngController extends BaseController {
         }
         catch (AppException e)
         {
-            e.printStackTrace();
             logger.error(e.getMessage(),e);
             
             operatorLogs.setOperObject(0);

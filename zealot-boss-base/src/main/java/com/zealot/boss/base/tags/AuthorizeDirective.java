@@ -12,6 +12,8 @@ import com.zealot.exception.AppException;
 import com.zealot.web.freemarker.tags.BaseDirective;
 
 import freemarker.core.Environment;
+import freemarker.ext.beans.NumberModel;
+import freemarker.ext.beans.StringModel;
 import freemarker.template.SimpleNumber;
 import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateDirectiveBody;
@@ -28,12 +30,12 @@ public class AuthorizeDirective extends BaseDirective {
 
 	@SuppressWarnings({ "rawtypes" })
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-		SimpleScalar menu = (SimpleScalar)params.get("menuId");
-		SimpleNumber adminNumber = (SimpleNumber)params.get("isAdmin");
-		SimpleNumber uidNumber = (SimpleNumber)params.get("uid");
-		String menuId = menu.getAsString();
-		Integer isAdmin = (Integer)adminNumber.getAsNumber();
-		Integer uid = (Integer)uidNumber.getAsNumber();
+		StringModel menu = (StringModel)params.get("menuId");
+		NumberModel adminNumber = (NumberModel)params.get("isAdmin");
+		NumberModel uidNumber = (NumberModel)params.get("uid");
+		String menuId = menu.toString();
+		Integer isAdmin = adminNumber.getAsNumber().intValue();
+		Integer uid = uidNumber.getAsNumber().intValue();
 		boolean hasRights = false;
 		if(isAdmin == 1) {
 			hasRights = true;

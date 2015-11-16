@@ -38,4 +38,10 @@ public interface AuthorizeAPI {
 	 * @param rightCode
 	 */
 	public void clearRightRoles(String rightCode);
+	
+	/**
+	 * 角色权限变更后改变缓存
+	 * @param rightCode
+	 */
+	public void clearRightRoles();
 }

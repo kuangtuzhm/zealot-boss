@@ -25,6 +25,7 @@ import com.zealot.exception.AppException;
 import com.zealot.exception.ResultException;
 import com.zealot.orm.model.Pagination;
 import com.zealot.util.JsonUtil;
+import com.zealot.util.StringUtil;
 import com.zealot.web.bean.Message;
 
 @Controller
@@ -113,6 +114,33 @@ public class RoleMngController extends BaseController {
 			rightsService.setRoleRights(simpleRightList,roleRights);
 			//model.addAttribute("MENU_LIST", simpleRightList);
 			s = JsonUtil.toJson(simpleRightList);
+			return ajax(s);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			s="{\"stats\":\"error\",\"msg\":\"后台处理出错\"}";
+			return ajax(s);
+		}
+	}
+	
+	@RequestMapping(value = "/role/save_role_right", method = RequestMethod.POST)
+	public @ResponseBody String saveRoleRight(Model model, Integer id, String rightCode, HttpServletResponse response) {
+		String s = "";
+		try {
+			if (StringUtil.isEmpty(rightCode) || id==null) {
+				s="{\"stats\":\"error\",\"msg\":\"添加或删除权限缺少参数\"}";
+				return ajax(s);
+			}
+			List<String> list = new ArrayList<String>();
+			String[] codes = rightCode.split(",");
+			if (StringUtil.isNotEmpty(rightCode)
+					&& codes!=null) 
+			{
+				for (String code : codes) {
+					list.add(code);
+				}
+			}
+			rightsService.updateRoleRights(id, list);
+			s="{\"stats\":\"ok\"}";
 			return ajax(s);
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);

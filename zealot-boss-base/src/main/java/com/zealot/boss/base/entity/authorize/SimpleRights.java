@@ -30,7 +30,9 @@ public class SimpleRights implements Serializable
 	
 	private Integer iorder;
 	
-	private boolean checked;
+	private boolean open = true;
+	
+	private boolean checked = false;
 
 	private List<SimpleRights> childList;
 	
@@ -109,8 +111,15 @@ public class SimpleRights implements Serializable
 	public void setChildList(List<SimpleRights> childList) {
 		this.childList = childList;
 	}
+	
+	public boolean isOpen() {
+		return open;
+	}
 
-
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+	
 	@Override
 	public String toString()
 	{
@@ -120,5 +129,8 @@ public class SimpleRights implements Serializable
 		buffer.append(" parentCode : ").append(parentCode);
 		return buffer.toString();
 	}
+
+
+	
 
 }

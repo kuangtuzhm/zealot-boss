@@ -41,4 +41,9 @@ public interface AuthorizationService
 	 * @param rightCode
 	 */
 	public void clearRightRoles(String rightCode);
+	
+	/**
+	 * 角色权限变更后改变缓存
+	 */
+	public void clearRightRoles();
 }

@@ -38,6 +38,9 @@ public interface RightsService
     
     public List<Rights> findChildList(Rights right,List<Rights> list);
     
+    public void updateRoleRights(Integer roleId, List<String> rightCodes)
+			throws AppException;
+    
     /**
      * 根据path获得列表
      * @param path

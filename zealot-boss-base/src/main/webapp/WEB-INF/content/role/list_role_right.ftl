@@ -5,11 +5,9 @@
 <title>添加角色</title>
 <#include "../commons/page_css.ftl" />
 <#include "../commons/page_js.ftl" />
-<link rel="StyleSheet" href="/css/dtree/dtree.css" type="text/css" />
-<script type="text/javascript" src="/js/dtree/dtree.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/css/zTreeStyle/zTreeStyle.css" >
-<script type="text/javascript" src="/js/zTreeJs/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/zTree/zTreeStyle.css" >
+<script type="text/javascript" src="/js/zTreeJs/jquery.ztree.all-3.5.js"></script>
 
 <style type="text/css">    
     ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4; width:250px; height:260px;overflow-y:scroll;overflow-x:auto;}
@@ -25,10 +23,10 @@
 			view: {
 				dblClickExpand: false
 			},
-			key: {
-				name: "rightDesc"
-			},
 			data: {
+				key: {
+					name: "rightDesc"
+				},
 				simpleData: {
 					enable: true,
 					idKey: "rightCode",
@@ -49,14 +47,8 @@
            success: function (data) { 
            		if(data.msg)
            		{
-           			if(alertMsg)
-	           		{
-	           			alertMsg.error(data.msg);
-	           		}
-	           		else
-	           		{
-	           			alert(data.msg);
-	           		}
+           			pop_error("操作失败", data.msg,function() {
+								} ,false);
            		}
            		else
            		{
@@ -66,14 +58,51 @@
                 }
            }, 
            error: function (XMLHttpRequest, textStatus, errorThrown) { 
-           		if(alertMsg)
+           		pop_error("操作失败", errorThrown,function() {
+								} ,false);
+           }
+       });
+	}
+	
+	function addOrDeleteRight(){
+		if(id==''){
+			alert('请选择角色');
+			return;
+		}			
+		 var str="";
+         var zTree=$.fn.zTree.getZTreeObj("tree_roleRight");
+         var nodes = zTree.getCheckedNodes(true);
+         var len = nodes.length;
+         for(var i=0; i<len; i++) 
+         {
+         	str += nodes[i].rightCode+",";
+         }
+         
+     	 var rightCode=str.substr(0,str.lastIndexOf(','));
+     	 if(rightCode.length==0){
+			alert('请选择权限');
+			return;
+        }
+        $.ajax({ 
+           type: "post", 
+           url: "/role/save_role_right", 
+           dataType: "json", 
+           data: {"id":id,"rightCode":rightCode},
+           success: function (data) { 
+           		if(data.stats=="ok")
            		{
-           			alertMsg.error(errorThrown);
+           			pop_succeed("操作成功", "角色权限设置成功。", function() {
+								}, false);
            		}
            		else
            		{
-                  	alert(errorThrown); 
+           			pop_error("操作失败", data.msg,function() {
+								} ,false);
                 }
+           }, 
+           error: function (XMLHttpRequest, textStatus, errorThrown) { 
+                pop_error("操作失败", errorThrown,function() {
+								} ,false);
            }
        });
 	}
@@ -117,9 +146,7 @@
     
     <!-- start of main_slide_con -->
     <div class="main_slide_con">
-    	<input type="submit" class="btnC" value="确定" />
-        <a class="btnD" href="#" onclick="location.href='list'">取消</a>
-        
+    	<input type="button" class="btnC" onclick="addOrDeleteRight()" value="保存" />
     </div>
     <!-- end of main_slide_con -->
     

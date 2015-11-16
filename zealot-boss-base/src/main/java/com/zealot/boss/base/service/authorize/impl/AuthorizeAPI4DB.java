@@ -43,7 +43,7 @@ public class AuthorizeAPI4DB implements AuthorizeAPI {
 	@Override
 	public List<Integer> getRightRoles(String rightCode) throws AppException {
 		
-		List list = rightRoleMap.get(rightCode);
+		List<Integer> list = rightRoleMap.get(rightCode);
 		if(list==null ||list.isEmpty())
 		{
 			synchronized(this)
@@ -66,5 +66,10 @@ public class AuthorizeAPI4DB implements AuthorizeAPI {
 	public void clearRightRoles(String rightCode)
 	{
 		rightRoleMap.remove(rightCode);
+	}
+
+	@Override
+	public void clearRightRoles() {
+		rightRoleMap.clear();
 	}
 }

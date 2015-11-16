@@ -80,6 +80,18 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		}
 	}
 
+	@Override
+	public void clearRightRoles() {
+		if(authorizeAPI!=null)
+		{
+			authorizeAPI.clearRightRoles();
+		}
+		else
+		{
+			defaultAuthorizeAPI.clearRightRoles();
+		}
+	}
+	
 	public void setAuthorizeAPI(AuthorizeAPI authorizeAPI) {
 		this.authorizeAPI = authorizeAPI;
 	}

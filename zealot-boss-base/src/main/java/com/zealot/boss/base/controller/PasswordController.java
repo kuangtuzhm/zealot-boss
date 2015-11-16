@@ -3,7 +3,6 @@ package com.zealot.boss.base.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jasig.cas.client.model.CasUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class PasswordController extends BaseController {
 		
 	@RequestMapping(value = "/password/modify", method = RequestMethod.GET)
 	public String modify(Model model, HttpServletRequest request) throws Exception {
-		CasUser user = (CasUser)request.getSession().getAttribute(BossFilter.SESSION_USER_KEY);
+		User user = (User)request.getSession().getAttribute(BossFilter.SESSION_USER_KEY);
 		model.addAttribute("uid",user.getUid());
 		return "password/modify";
 	}
