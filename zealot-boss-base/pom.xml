@@ -8,7 +8,7 @@
     <version>1.0</version>
   </parent>
   <artifactId>zealot-boss-base</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <name>zealot-boss-base</name>
   <url>http://maven.apache.org</url>
   <dependencies>

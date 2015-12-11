@@ -59,7 +59,8 @@ public class BossFilter extends AbstractConfigurationFilter {
             filterChain.doFilter(request, response);
             return;
         }
-		
+        String loginNmae = request.getParameter("loginName");
+        String uname = request.getParameter("uname");
 		// _const_cas_assertion_是CAS中存放登录用户名的session标志
 		Object object = httpRequest.getSession().getAttribute(SESSION_CAS_KEY);
 		

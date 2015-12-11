@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>添加用户</title>
 <#include "../commons/page_css.ftl" />
 <#include "../commons/page_js.ftl" />
