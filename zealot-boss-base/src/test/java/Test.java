@@ -2,8 +2,8 @@
 public class Test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		com.zealot.boot.container.Main.main(args);
 	}
 
 }
