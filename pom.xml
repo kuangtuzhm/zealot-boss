@@ -52,6 +52,12 @@
   			<version>${zealot.version}</version>
   		</dependency>
   		
+  		<dependency>
+  			<groupId>com.zealot</groupId>
+  			<artifactId>zealot-distribute</artifactId>
+  			<version>${zealot.version}</version>
+  		</dependency>
+  		
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
